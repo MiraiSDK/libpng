@@ -484,5 +484,9 @@ struct png_struct_def
    png_colorspace   colorspace;
 #endif
 #endif
+    
+#ifdef PNG_READ_CgBI_SUPPORTED
+    png_uint_32 using_CgBI_extension;
+#endif
 };
 #endif /* PNGSTRUCT_H */

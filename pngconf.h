@@ -78,6 +78,11 @@
 #  endif
 #endif
 
+#ifndef PNG_NO_READ_CgBI
+#  define PNG_READ_CgBI_SUPPORTED
+#  define PNG_CgBI_SUPPORTED
+#endif
+
 /* COMPILER SPECIFIC OPTIONS.
  *
  * These options are provided so that a variety of difficult compilers

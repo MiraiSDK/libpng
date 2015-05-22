@@ -247,6 +247,11 @@ png_read_info(png_structrp png_ptr, png_inforp info_ptr)
          png_handle_iTXt(png_ptr, info_ptr, length);
 #endif
 
+#ifdef PNG_READ_CgBI_SUPPORTED
+	  else if (chunk_name == png_CgBI)
+         png_handle_CgBI(png_ptr, info_ptr, length);
+#endif
+       
       else
          png_handle_unknown(png_ptr, info_ptr, length,
             PNG_HANDLE_CHUNK_AS_DEFAULT);
@@ -1217,6 +1222,13 @@ png_read_png(png_structrp png_ptr, png_inforp info_ptr,
 
    /* Read rest of file, and get additional chunks in info_ptr - REQUIRED */
    png_read_end(png_ptr, info_ptr);
+
+#ifdef PNG_READ_CgBI_SUPPORTED
+   if(png_ptr->using_CgBI_extension) {
+      png_ptr->color_type=PNG_COLOR_TYPE_BGRA;
+      info_ptr->color_type=PNG_COLOR_TYPE_BGRA;
+   }
+#endif
 
    PNG_UNUSED(params)
 }

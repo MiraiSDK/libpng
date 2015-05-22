@@ -2702,6 +2702,16 @@ png_handle_iTXt(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 }
 #endif
 
+#ifdef PNG_READ_CgBI_SUPPORTED
+/* Note: this does not correctly handle chunks that are > 64K under DOS */
+void /* PRIVATE */
+png_handle_CgBI(png_structp png_ptr, png_infop info_ptr, png_uint_32 length)
+{
+	png_byte buf[8];	png_read_data(png_ptr, buf, 8);
+	png_ptr->using_CgBI_extension=1;
+}
+#endif
+
 #ifdef PNG_READ_UNKNOWN_CHUNKS_SUPPORTED
 /* Utility function for png_handle_unknown; set up png_ptr::unknown_chunk */
 static int

@@ -736,6 +736,7 @@
 #define png_tIME PNG_U32(116,  73,  77,  69)
 #define png_tRNS PNG_U32(116,  82,  78,  83)
 #define png_zTXt PNG_U32(122,  84,  88, 116)
+#define png_CgBI PNG_U32( 67, 103,  66,  73)
 
 /* The following will work on (signed char*) strings, whereas the get_uint_32
  * macro will fail on top-bit-set values because of the sign extension.
@@ -1330,6 +1331,12 @@ PNG_INTERNAL_FUNCTION(void,png_handle_tRNS,(png_structrp png_ptr,
 PNG_INTERNAL_FUNCTION(void,png_handle_zTXt,(png_structrp png_ptr,
     png_inforp info_ptr, png_uint_32 length),PNG_EMPTY);
 #endif
+    
+#ifdef PNG_READ_CgBI_SUPPORTED
+PNG_INTERNAL_FUNCTION(void,png_handle_CgBI,(png_structp png_ptr,
+    png_infop info_ptr, png_uint_32 length),PNG_EMPTY);
+#endif
+
 
 PNG_INTERNAL_FUNCTION(void,png_check_chunk_name,(png_structrp png_ptr,
     png_uint_32 chunk_name),PNG_EMPTY);
